@@ -13,6 +13,7 @@ export default function Register() {
   const [formData, setFormData] = useState({
     fullName: '',
     username: '',
+    email: '',
     password: '',
     confirmPassword: ''
   });
@@ -55,6 +56,7 @@ export default function Register() {
       await api.post('/auth/register', {
         fullName: formData.fullName,
         username: formData.username,
+        email: formData.email,
         password: formData.password
       });
       
@@ -147,6 +149,33 @@ export default function Register() {
             </div>
 
             <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+            Email Address
+          </label>
+
+          <div className="mt-1 relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex           items-center pointer-events-none">
+              <Mail className="h-5 w-5 text-emerald-500" />
+            </div>
+
+            <input
+              type="email"
+              required
+              disabled={loading}
+              className="appearance-none block w-full pl-10 px-3 py-3 border        border-slate-200 dark:border-slate-700 rounded-xl shadow-sm       dark:shadow-none placeholder-slate-400 focus:outline-none       focus:ring-2 focus:ring-emerald-500 focus:border-transparent      transition bg-white/50 focus:bg-white dark:bg-slate-800        disabled:opacity-50"
+              placeholder="example@gmail.com"
+              value={formData.email}
+              onChange={(e) =>
+            setFormData({
+              ...formData,
+              email: e.target.value
+             })
+            }
+            />
+          </div>
+          </div> 
+
+            <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Password</label>
               <div className="mt-1 relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -230,9 +259,9 @@ export default function Register() {
 
             <div>
               {/* Helper text showing what's needed to enable the button */}
-              {(!passwordsMatch || formData.password.length < 8 || !formData.fullName || !formData.username) && (
+              {(!passwordsMatch || formData.password.length < 8 || !formData.fullName || !formData.username || !formData.email) && (
                 <p className="text-xs text-slate-400 dark:text-slate-500 text-center mb-3">
-                  {!formData.fullName || !formData.username
+                  {!formData.fullName || !formData.username || !formData.email
                     ? 'Fill in all fields to continue'
                     : formData.password.length < 8
                     ? 'Password must be at least 8 characters'
@@ -241,7 +270,7 @@ export default function Register() {
               )}
               <button
                 type="submit"
-                disabled={!passwordsMatch || formData.password.length < 8 || loading || !formData.fullName || !formData.username}
+                disabled={!passwordsMatch || formData.password.length < 8 || loading || !formData.fullName || !formData.username || !formData.email}
                 className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition transform hover:-translate-y-0.5 disabled:opacity-40 disabled:hover:translate-y-0 disabled:cursor-not-allowed disabled:bg-emerald-800 flex items-center gap-2"
               >
                 {loading ? (
