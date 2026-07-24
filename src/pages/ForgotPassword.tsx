@@ -29,24 +29,24 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
-      <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4">
+      <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-6 sm:p-8 w-full max-w-md">
 
         <div className="flex justify-center mb-6">
-          <Moon className="w-12 h-12 text-emerald-600" />
+          <Moon className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-600" />
         </div>
 
-        <h1 className="text-3xl font-bold text-center mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-2">
           Forgot Password
         </h1>
 
-        <p className="text-center text-slate-500 mb-6">
+        <p className="text-center text-sm sm:text-base text-slate-500 mb-6">
           Enter your email address and we'll send you a password reset link.
         </p>
 
         {success && (
-          <div className="bg-green-50 text-green-700 border border-green-200 rounded-xl p-3 flex items-center gap-2 mb-5">
-            <CheckCircle className="w-5 h-5" />
+          <div className="bg-green-50 text-green-700 border border-green-200 rounded-xl p-3 flex items-center gap-2 mb-5 text-sm">
+            <CheckCircle className="w-5 h-5 shrink-0" />
             {success}
           </div>
         )}

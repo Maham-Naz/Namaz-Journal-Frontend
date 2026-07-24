@@ -128,16 +128,16 @@ export default function PrayerPanel({ isOpen, onClose, date, onUpdate }: PrayerP
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed inset-y-0 right-0 w-full sm:w-96 bg-white dark:bg-slate-800 shadow-2xl z-50 flex flex-col border-l border-emerald-100"
           >
-            <div className="px-6 py-4 flex items-center justify-between border-b border-emerald-50 bg-emerald-950 text-white">
-              <h2 className="text-xl font-bold">Daily Prayers</h2>
+            <div className="px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between border-b border-emerald-50 bg-emerald-950 text-white">
+              <h2 className="text-lg sm:text-xl font-bold">Daily Prayers</h2>
               <button onClick={onClose} className="p-2 hover:bg-emerald-800 rounded-full transition-colors">
                 <X className="h-5 w-5" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 bg-slate-50 dark:bg-slate-900">
-              <div className="mb-6 flex justify-between items-center">
-                <h3 className="text-sm font-semibold text-emerald-600 uppercase tracking-wider">{displayDate}</h3>
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50 dark:bg-slate-900">
+              <div className="mb-4 sm:mb-6 flex justify-between items-center gap-2">
+                <h3 className="text-xs sm:text-sm font-semibold text-emerald-600 uppercase tracking-wider">{displayDate}</h3>
                 {saving && <span className="text-xs text-slate-400 flex items-center gap-1"><Save className="h-3 w-3 animate-pulse" /> Saving...</span>}
               </div>
 
@@ -152,31 +152,31 @@ export default function PrayerPanel({ isOpen, onClose, date, onUpdate }: PrayerP
                       <div 
                         key={prayer.id}
                         onClick={() => togglePrayer(prayer.id, prayer.state, prayer.setter)}
-                        className={`flex items-center gap-4 p-4 cursor-pointer transition-colors ${
+                        className={`flex items-center gap-3 sm:gap-4 p-3.5 sm:p-4 cursor-pointer transition-colors ${
                           idx !== prayersList.length - 1 ? 'border-b border-slate-50' : ''
                         } hover:bg-emerald-50/50`}
                       >
-                        <button className="focus:outline-none">
+                        <button className="focus:outline-none shrink-0">
                           {prayer.state ? (
-                            <CheckCircle2 className="h-6 w-6 text-emerald-500" />
+                            <CheckCircle2 className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-500" />
                           ) : (
-                            <Circle className="h-6 w-6 text-slate-300" />
+                            <Circle className="h-5 w-5 sm:h-6 sm:w-6 text-slate-300" />
                           )}
                         </button>
-                        <span className={`text-lg font-medium ${prayer.state ? 'text-slate-800 dark:text-slate-100' : 'text-slate-600 dark:text-slate-300'}`}>
+                        <span className={`text-base sm:text-lg font-medium ${prayer.state ? 'text-slate-800 dark:text-slate-100' : 'text-slate-600 dark:text-slate-300'}`}>
                           {prayer.name}
                         </span>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-8">
-                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">Daily Notes</label>
+                  <div className="mt-6 sm:mt-8">
+                    <label className="block text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-200 mb-2">Daily Notes</label>
                     <textarea
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder="Reflections, missed rakats, or gratitude..."
-                      className="w-full h-32 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none transition-all shadow-sm dark:shadow-none"
+                      className="w-full h-28 sm:h-32 p-3.5 sm:p-4 text-sm sm:text-base rounded-2xl border border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none resize-none transition-all shadow-sm dark:shadow-none"
                     />
                   </div>
                 </div>

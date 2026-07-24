@@ -107,32 +107,32 @@ export default function ResetPassword() {
       <motion.div
         initial={{ opacity: 0, scale: .95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-8 w-full max-w-md"
+        className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-md"
       >
 
         <div className="flex justify-center mb-5">
           <div className="p-3 bg-emerald-100 rounded-2xl">
-            <Moon className="w-8 h-8 text-emerald-600" />
+            <Moon className="w-7 h-7 sm:w-8 sm:h-8 text-emerald-600" />
           </div>
         </div>
 
-        <h1 className="text-3xl font-bold text-center text-emerald-700">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-emerald-700">
           Reset Password
         </h1>
 
-        <p className="text-center text-slate-500 mt-2 mb-6">
+        <p className="text-center text-sm sm:text-base text-slate-500 mt-2 mb-6">
           Enter your new password below.
         </p>
 
         {error && (
-          <div className="mb-4 bg-red-50 border border-red-200 text-red-600 rounded-xl p-3 flex gap-2">
+          <div className="mb-4 bg-red-50 border border-red-200 text-red-600 rounded-xl p-3 flex gap-2 text-sm">
             <XCircle className="w-5 h-5 shrink-0" />
             {error}
           </div>
         )}
 
         {success && (
-          <div className="mb-4 bg-green-50 border border-green-200 text-green-700 rounded-xl p-3 flex gap-2">
+          <div className="mb-4 bg-green-50 border border-green-200 text-green-700 rounded-xl p-3 flex gap-2 text-sm">
             <CheckCircle className="w-5 h-5 shrink-0" />
             {success}
           </div>

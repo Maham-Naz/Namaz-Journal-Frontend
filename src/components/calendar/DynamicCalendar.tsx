@@ -142,12 +142,12 @@ export default function DynamicCalendar() {
     <>
       <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 overflow-hidden">
         {/* Calendar Header */}
-        <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4 bg-slate-50/50">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-emerald-100 text-emerald-600 rounded-xl">
+        <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-slate-100 dark:border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 bg-slate-50/50">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 justify-center sm:justify-start">
+            <div className="p-2 bg-emerald-100 text-emerald-600 rounded-xl shrink-0">
               <CalendarIcon className="h-5 w-5" />
             </div>
-            <h2 className="text-xl font-bold text-emerald-950 dark:text-emerald-50 w-32">
+            <h2 className="text-base sm:text-xl font-bold text-emerald-950 dark:text-emerald-50 whitespace-nowrap">
               {months[currentMonth]}
             </h2>
             
@@ -192,7 +192,7 @@ export default function DynamicCalendar() {
         </div>
 
         {/* Calendar Grid */}
-        <div className="p-6">
+        <div className="p-3 sm:p-6">
           <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-2">
             {weekDays.map(day => (
               <div key={day} className="text-center text-xs font-semibold text-slate-400 uppercase tracking-wider py-2">

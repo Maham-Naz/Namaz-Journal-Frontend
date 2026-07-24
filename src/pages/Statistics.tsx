@@ -59,17 +59,17 @@ export default function Statistics() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 print:hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 print:hidden">
         <div>
-          <h1 className="text-3xl font-bold text-emerald-950 dark:text-emerald-50 mb-2">Statistics & Analytics</h1>
-          <p className="text-slate-600 dark:text-slate-300">Deep dive into your prayer consistency.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-emerald-950 dark:text-emerald-50 mb-2">Statistics & Analytics</h1>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">Deep dive into your prayer consistency.</p>
         </div>
         
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
           <select 
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(Number(e.target.value))}
-            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2 px-4 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm dark:shadow-none"
+            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2 px-3 sm:px-4 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm dark:shadow-none"
           >
             {months.map(m => <option key={m.value} value={m.value}>{m.label}</option>)}
           </select>
@@ -77,14 +77,14 @@ export default function Statistics() {
           <select 
             value={selectedYear}
             onChange={(e) => setSelectedYear(Number(e.target.value))}
-            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2 px-4 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm dark:shadow-none"
+            className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 py-2 px-3 sm:px-4 rounded-xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500 shadow-sm dark:shadow-none"
           >
             {years.map(y => <option key={y} value={y}>{y}</option>)}
           </select>
 
           <button 
             onClick={handlePrint}
-            className="flex items-center gap-2 bg-emerald-600 text-white py-2 px-4 rounded-xl text-sm font-bold hover:bg-emerald-700 transition-colors shadow-sm dark:shadow-none"
+            className="flex items-center gap-2 bg-emerald-600 text-white py-2 px-3 sm:px-4 rounded-xl text-sm font-bold hover:bg-emerald-700 transition-colors shadow-sm dark:shadow-none"
           >
             <Download className="h-4 w-4" />
             <span className="hidden sm:inline">Export Summary</span>

@@ -37,7 +37,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col justify-center py-10 sm:py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-200/50 rounded-full mix-blend-multiply filter blur-3xl"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-gold-200/40 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -46,12 +46,12 @@ export default function Login() {
         <div className="flex justify-center">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="p-3 bg-emerald-100 rounded-2xl group-hover:bg-emerald-200 transition">
-              <Moon className="h-8 w-8 text-emerald-600" />
+              <Moon className="h-7 w-7 sm:h-8 sm:w-8 text-emerald-600" />
             </div>
-            <span className="text-2xl font-bold text-emerald-950 dark:text-emerald-50">Namaz Journal</span>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-950 dark:text-emerald-50">Namaz Journal</span>
           </Link>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-emerald-950 dark:text-emerald-50">
+        <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-emerald-950 dark:text-emerald-50">
           Welcome Back
         </h2>
         <p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-300">
@@ -124,7 +124,7 @@ export default function Login() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center">
                 <input
                   id="remember-me"
@@ -140,12 +140,12 @@ export default function Login() {
               </div>
 
               <div className="text-sm">
-              <Link
-              to="/forgot-password"
-              className="font-medium text-emerald-600                     hover:text-emerald-500 transition"
->
-              Forgot your password?
-            </Link>
+                <Link
+                  to="/forgot-password"
+                  className="font-medium text-emerald-600 hover:text-emerald-500 transition"
+                >
+                  Forgot your password?
+                </Link>
               </div>
             </div>
 

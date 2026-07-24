@@ -71,7 +71,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col justify-center py-10 sm:py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-emerald-200/50 rounded-full mix-blend-multiply filter blur-3xl"></div>
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-gold-200/40 rounded-full mix-blend-multiply filter blur-3xl"></div>
@@ -80,12 +80,12 @@ export default function Register() {
         <div className="flex justify-center">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="p-3 bg-emerald-100 rounded-2xl group-hover:bg-emerald-200 transition">
-              <Moon className="h-8 w-8 text-emerald-600" />
+              <Moon className="h-7 w-7 sm:h-8 sm:w-8 text-emerald-600" />
             </div>
-            <span className="text-2xl font-bold text-emerald-950 dark:text-emerald-50">Namaz Journal</span>
+            <span className="text-xl sm:text-2xl font-bold text-emerald-950 dark:text-emerald-50">Namaz Journal</span>
           </Link>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-emerald-950 dark:text-emerald-50">
+        <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-emerald-950 dark:text-emerald-50">
           Create Your Account
         </h2>
         <p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-300">
@@ -150,30 +150,30 @@ export default function Register() {
 
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">
-            Email Address
-          </label>
+                Email Address
+              </label>
 
-          <div className="mt-1 relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex           items-center pointer-events-none">
-              <Mail className="h-5 w-5 text-emerald-500" />
+              <div className="mt-1 relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-emerald-500" />
+                </div>
+
+                <input
+                  type="email"
+                  required
+                  disabled={loading}
+                  className="appearance-none block w-full pl-10 px-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm dark:shadow-none placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition bg-white/50 focus:bg-white dark:bg-slate-800 disabled:opacity-50"
+                  placeholder="example@gmail.com"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      email: e.target.value
+                    })
+                  }
+                />
+              </div>
             </div>
-
-            <input
-              type="email"
-              required
-              disabled={loading}
-              className="appearance-none block w-full pl-10 px-3 py-3 border        border-slate-200 dark:border-slate-700 rounded-xl shadow-sm       dark:shadow-none placeholder-slate-400 focus:outline-none       focus:ring-2 focus:ring-emerald-500 focus:border-transparent      transition bg-white/50 focus:bg-white dark:bg-slate-800        disabled:opacity-50"
-              placeholder="example@gmail.com"
-              value={formData.email}
-              onChange={(e) =>
-            setFormData({
-              ...formData,
-              email: e.target.value
-             })
-            }
-            />
-          </div>
-          </div> 
 
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Password</label>
@@ -217,7 +217,7 @@ export default function Register() {
                       />
                     ))}
                   </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 flex justify-between">
+                  <div className="text-xs text-slate-500 dark:text-slate-400 flex justify-between flex-wrap gap-1">
                     <span>Strength: {strengthLabels[strength]}</span>
                     {formData.password.length < 8 && <span className="text-red-500">Needs 8+ chars</span>}
                   </div>

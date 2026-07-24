@@ -69,53 +69,53 @@ export default function DataSettings() {
   };
 
   return (
-    <div className="max-w-2xl bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 space-y-8">
+    <div className="max-w-2xl bg-white dark:bg-slate-800 p-4 sm:p-6 lg:p-8 rounded-3xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 space-y-6 sm:space-y-8">
       <div>
-        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">Data Management</h3>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Export your prayer records for backup, or import them from another device.</p>
+        <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100">Data Management</h3>
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Export your prayer records for backup, or import them from another device.</p>
       </div>
 
       {message && (
-        <div className="p-4 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 rounded-xl flex items-center gap-3 border border-emerald-100">
+        <div className="p-3.5 sm:p-4 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 rounded-xl flex items-center gap-3 border border-emerald-100">
           <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
-          <p className="text-sm font-medium">{message}</p>
+          <p className="text-xs sm:text-sm font-medium">{message}</p>
         </div>
       )}
 
       {error && (
-        <div className="p-4 bg-red-50 text-red-700 rounded-xl flex items-center gap-3 border border-red-100">
+        <div className="p-3.5 sm:p-4 bg-red-50 text-red-700 rounded-xl flex items-center gap-3 border border-red-100">
           <AlertCircle className="h-5 w-5 flex-shrink-0" />
-          <p className="text-sm font-medium">{error}</p>
+          <p className="text-xs sm:text-sm font-medium">{error}</p>
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Export Card */}
-        <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col items-center text-center gap-4">
-          <div className="p-4 bg-blue-100 text-blue-600 rounded-full">
-            <Download className="h-8 w-8" />
+        <div className="p-4 sm:p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col items-center text-center gap-3 sm:gap-4">
+          <div className="p-3 sm:p-4 bg-blue-100 text-blue-600 rounded-full">
+            <Download className="h-6 w-6 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <h4 className="font-bold text-slate-800 dark:text-slate-100">Export Backup</h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">Download all your records as a JSON file.</p>
+            <h4 className="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100">Export Backup</h4>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-3 sm:mb-4">Download all your records as a JSON file.</p>
           </div>
           <button 
             onClick={handleExport}
             disabled={exportLoading || importLoading}
-            className="w-full py-2 bg-white dark:bg-slate-800 border border-slate-300 text-slate-700 dark:text-slate-200 font-medium rounded-xl hover:bg-slate-100 dark:bg-slate-800 transition-colors disabled:opacity-50"
+            className="w-full py-2 text-sm sm:text-base bg-white dark:bg-slate-800 border border-slate-300 text-slate-700 dark:text-slate-200 font-medium rounded-xl hover:bg-slate-100 dark:bg-slate-800 transition-colors disabled:opacity-50"
           >
             {exportLoading ? 'Exporting...' : 'Export JSON'}
           </button>
         </div>
 
         {/* Import Card */}
-        <div className="p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col items-center text-center gap-4">
-          <div className="p-4 bg-emerald-100 text-emerald-600 rounded-full">
-            <Upload className="h-8 w-8" />
+        <div className="p-4 sm:p-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col items-center text-center gap-3 sm:gap-4">
+          <div className="p-3 sm:p-4 bg-emerald-100 text-emerald-600 rounded-full">
+            <Upload className="h-6 w-6 sm:h-8 sm:w-8" />
           </div>
           <div>
-            <h4 className="font-bold text-slate-800 dark:text-slate-100">Import Data</h4>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">Restore records from a previous JSON backup.</p>
+            <h4 className="text-sm sm:text-base font-bold text-slate-800 dark:text-slate-100">Import Data</h4>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-3 sm:mb-4">Restore records from a previous JSON backup.</p>
           </div>
           
           <input 
@@ -129,14 +129,14 @@ export default function DataSettings() {
           <button 
             onClick={() => fileInputRef.current?.click()}
             disabled={exportLoading || importLoading}
-            className="w-full py-2 bg-emerald-600 border border-emerald-600 text-white font-medium rounded-xl hover:bg-emerald-700 transition-colors disabled:opacity-50"
+            className="w-full py-2 text-sm sm:text-base bg-emerald-600 border border-emerald-600 text-white font-medium rounded-xl hover:bg-emerald-700 transition-colors disabled:opacity-50"
           >
             {importLoading ? 'Importing...' : 'Select JSON File'}
           </button>
         </div>
       </div>
       
-      <div className="bg-amber-50 border border-amber-100 p-4 rounded-xl text-amber-800 text-sm flex gap-3">
+      <div className="bg-amber-50 border border-amber-100 p-3.5 sm:p-4 rounded-xl text-amber-800 text-xs sm:text-sm flex gap-3">
         <AlertCircle className="h-5 w-5 flex-shrink-0 text-amber-500" />
         <p><strong>Note on Imports:</strong> Importing data will overwrite any existing records you have for those specific dates. Use with caution.</p>
       </div>

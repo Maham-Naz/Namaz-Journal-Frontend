@@ -25,9 +25,9 @@ export default function StatsCards() {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 mb-6 sm:mb-8">
         {[1,2,3,4,5].map(i => (
-          <div key={i} className="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 h-32 animate-pulse"></div>
+          <div key={i} className="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 h-28 sm:h-32 animate-pulse"></div>
         ))}
       </div>
     );
@@ -87,7 +87,7 @@ export default function StatsCards() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 mb-6 sm:mb-8">
       {cards.map((card) => {
         const Icon = card.icon;
         return (
@@ -96,21 +96,21 @@ export default function StatsCards() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: card.delay }}
-            className="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow group relative overflow-hidden"
+            className="bg-white dark:bg-slate-800 p-3.5 sm:p-5 rounded-2xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow group relative overflow-hidden"
           >
             {/* Decorative background element */}
             <div className={`absolute -right-6 -top-6 w-24 h-24 ${card.bg} rounded-full opacity-20 group-hover:scale-150 transition-transform duration-500`}></div>
             
-            <div className="flex justify-between items-start mb-4 relative z-10">
-              <div className={`p-2 rounded-xl ${card.bg}`}>
-                <Icon className={`h-6 w-6 ${card.color}`} />
+            <div className="flex justify-between items-start mb-2 sm:mb-4 relative z-10">
+              <div className={`p-1.5 sm:p-2 rounded-xl ${card.bg}`}>
+                <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${card.color}`} />
               </div>
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-1">{card.value}</h3>
-              <p className="text-sm font-medium text-slate-900 dark:text-slate-50">{card.title}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{card.subtitle}</p>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800 dark:text-slate-100 mb-1 truncate">{card.value}</h3>
+              <p className="text-xs sm:text-sm font-medium text-slate-900 dark:text-slate-50">{card.title}</p>
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1">{card.subtitle}</p>
             </div>
           </motion.div>
         );

@@ -42,7 +42,7 @@ export default function OverviewStats({ stats }: OverviewStatsProps) {
   return (
     <div className="space-y-6">
       {/* Top 3 Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
         {cards.map((card, i) => {
           const Icon = card.icon;
           return (
@@ -51,14 +51,14 @@ export default function OverviewStats({ stats }: OverviewStatsProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white dark:bg-slate-800 p-5 rounded-2xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 flex items-center gap-4"
+              className="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 flex items-center gap-3 sm:gap-4"
             >
-              <div className={`p-3 rounded-xl ${card.bg}`}>
-                <Icon className={`h-6 w-6 ${card.color}`} />
+              <div className={`p-2.5 sm:p-3 rounded-xl shrink-0 ${card.bg}`}>
+                <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${card.color}`} />
               </div>
-              <div>
-                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{card.title}</p>
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{card.value}</h3>
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400 truncate">{card.title}</p>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 dark:text-slate-100">{card.value}</h3>
               </div>
             </motion.div>
           );
@@ -66,9 +66,9 @@ export default function OverviewStats({ stats }: OverviewStatsProps) {
       </div>
 
       {/* Individual Prayer Percentages */}
-      <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 p-6 sm:p-8">
-        <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-6">Prayer Completion Rates</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-sm dark:shadow-none border border-slate-100 dark:border-slate-700 p-4 sm:p-6 lg:p-8">
+        <h3 className="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 mb-4 sm:mb-6">Prayer Completion Rates</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
           {prayers.map((prayer, i) => {
             const Icon = prayer.icon;
             return (
@@ -79,11 +79,11 @@ export default function OverviewStats({ stats }: OverviewStatsProps) {
                 transition={{ delay: 0.2 + (i * 0.05) }}
                 className="flex flex-col items-center justify-center text-center group"
               >
-                <div className="relative mb-3">
-                  <svg className="w-20 h-20 transform -rotate-90">
-                    <circle cx="40" cy="40" r="36" stroke="currentColor" strokeWidth="6" fill="transparent" className="text-slate-100" />
+                <div className="relative mb-2 sm:mb-3">
+                  <svg className="w-16 h-16 sm:w-20 sm:h-20 transform -rotate-90">
+                    <circle cx="50%" cy="50%" r="36" stroke="currentColor" strokeWidth="6" fill="transparent" className="text-slate-100" />
                     <circle 
-                      cx="40" cy="40" r="36" 
+                      cx="50%" cy="50%" r="36" 
                       stroke="currentColor" 
                       strokeWidth="6" 
                       fill="transparent" 
@@ -93,11 +93,11 @@ export default function OverviewStats({ stats }: OverviewStatsProps) {
                     />
                   </svg>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon className={`h-6 w-6 ${prayer.color} group-hover:scale-110 transition-transform`} />
+                    <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${prayer.color} group-hover:scale-110 transition-transform`} />
                   </div>
                 </div>
-                <p className="font-semibold text-slate-800 dark:text-slate-100">{prayer.name}</p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">{prayer.value}%</p>
+                <p className="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-100">{prayer.name}</p>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">{prayer.value}%</p>
               </motion.div>
             );
           })}

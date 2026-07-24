@@ -27,14 +27,14 @@ export default function DangerZone() {
   };
 
   return (
-    <div className="max-w-2xl bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl shadow-sm dark:shadow-none border border-red-100 space-y-6">
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-red-100 text-red-600 rounded-xl">
-          <AlertTriangle className="h-6 w-6" />
+    <div className="max-w-2xl bg-white dark:bg-slate-800 p-4 sm:p-6 lg:p-8 rounded-3xl shadow-sm dark:shadow-none border border-red-100 space-y-6">
+      <div className="flex items-start gap-3 sm:gap-4">
+        <div className="p-2.5 sm:p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
+          <AlertTriangle className="h-5 w-5 sm:h-6 sm:w-6" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">Danger Zone</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Once you delete your account, there is no going back. Please be certain.</p>
+          <h3 className="text-lg sm:text-xl font-bold text-slate-800 dark:text-slate-100">Danger Zone</h3>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Once you delete your account, there is no going back. Please be certain.</p>
         </div>
       </div>
 
@@ -46,32 +46,32 @@ export default function DangerZone() {
           Delete Account
         </button>
       ) : (
-        <div className="mt-4 p-6 bg-red-50 rounded-2xl border border-red-200">
-          <h4 className="font-bold text-red-800 mb-2">Are you absolutely sure?</h4>
-          <p className="text-sm text-red-700 mb-6">
+        <div className="mt-4 p-4 sm:p-6 bg-red-50 rounded-2xl border border-red-200">
+          <h4 className="text-sm sm:text-base font-bold text-red-800 mb-2">Are you absolutely sure?</h4>
+          <p className="text-xs sm:text-sm text-red-700 mb-4 sm:mb-6">
             This action cannot be undone. This will permanently delete your account, prayer records, and all associated data.
           </p>
 
           <form onSubmit={handleDelete} className="space-y-4">
             <div>
-              <label className="block text-sm font-bold text-red-800 mb-1">Enter your password to confirm</label>
+              <label className="block text-xs sm:text-sm font-bold text-red-800 mb-1">Enter your password to confirm</label>
               <input 
                 type="password" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 placeholder="Current password"
-                className="w-full px-4 py-2 border border-red-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50"
+                className="w-full px-4 py-2 text-sm sm:text-base border border-red-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-50"
               />
             </div>
             
-            {error && <p className="text-red-600 text-sm font-medium">{error}</p>}
+            {error && <p className="text-red-600 text-xs sm:text-sm font-medium">{error}</p>}
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button 
                 type="submit"
                 disabled={loading}
-                className="flex items-center gap-2 px-6 py-2 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors disabled:opacity-50"
+                className="flex items-center justify-center gap-2 px-6 py-2 text-sm sm:text-base bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors disabled:opacity-50"
               >
                 {loading ? 'Deleting...' : <><Trash2 className="h-4 w-4" /> Delete Permanently</>}
               </button>
@@ -79,7 +79,7 @@ export default function DangerZone() {
                 type="button"
                 onClick={() => { setIsConfirming(false); setPassword(''); setError(''); }}
                 disabled={loading}
-                className="px-4 py-2 text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-200 rounded-xl transition-colors"
+                className="px-4 py-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-200 rounded-xl transition-colors"
               >
                 Cancel
               </button>
