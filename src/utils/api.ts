@@ -1,17 +1,29 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-  withCredentials: true, // Send cookies with requests
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    'http://localhost:5000/api',
+
+  withCredentials: true,
+
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
-// Interceptor to handle network and server errors globally
+// Response Interceptor
+
 api.interceptors.response.use(
   (response) => response,
+
   (error) => {
-    // If it's a network error (no response) or a 500 error, redirect to /500
-    console.log(error.response);
-    return Promise.reject(error);
+    if (!error.response) {
+      console.error('Network Error');
+    } else if (error.response.status >= 500) {
+      console.error('Server Error');
+    }
+
     return Promise.reject(error);
   }
 );

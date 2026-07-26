@@ -1,14 +1,23 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import { Loader2 } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
-export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
+interface Props {
+  children: React.ReactNode;
+}
+
+export default function ProtectedRoute({
+  children,
+}: Props) {
+
   const { user, loading } = useAuth();
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
-        <Loader2 className="h-12 w-12 text-emerald-600 animate-spin" />
+
+        <Loader2 className="w-10 h-10 animate-spin text-emerald-600" />
+
       </div>
     );
   }
@@ -17,5 +26,5 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return <>{children}</>;
 }

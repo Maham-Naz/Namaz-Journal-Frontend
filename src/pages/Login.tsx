@@ -1,174 +1,259 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { User, Lock, EyeOff, Eye, Moon, ArrowRight, Loader2, XCircle } from 'lucide-react';
+import {
+  User,
+  Lock,
+  Eye,
+  EyeOff,
+  Loader2,
+  ArrowRight,
+  XCircle,
+} from 'lucide-react';
+
+import logo from '../assets/logo.png';
 import api from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  
-  const [formData, setFormData] = useState({ username: '', password: '', rememberMe: false });
   const navigate = useNavigate();
   const { checkAuth } = useAuth();
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+    rememberMe: false,
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
 
-    if (!formData.username || !formData.password) {
-      setError('Username and password are required');
+    setError('');
+
+    if (!formData.username.trim() || !formData.password.trim()) {
+      setError('Please fill in all fields.');
       return;
     }
 
-    setLoading(true);
     try {
+      setIsLoading(true);
+
       await api.post('/auth/login', formData);
-      await checkAuth(); // Update global state
+
+      await checkAuth();
+
       navigate('/dashboard');
     } catch (err: any) {
-      // For security, standardizing generic invalid message even if specific error is returned, but using backend message if possible
-      setError(err.response?.data?.error || 'Invalid username or password.');
+      setError(
+        err?.response?.data?.error ||
+          'Invalid username or password.'
+      );
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col justify-center py-10 sm:py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Decorative background */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-emerald-200/50 rounded-full mix-blend-multiply filter blur-3xl"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-gold-200/40 rounded-full mix-blend-multiply filter blur-3xl"></div>
-
-      <div className="sm:mx-auto sm:w-full sm:max-w-md z-10">
-        <div className="flex justify-center">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="p-3 bg-emerald-100 rounded-2xl group-hover:bg-emerald-200 transition">
-              <Moon className="h-7 w-7 sm:h-8 sm:w-8 text-emerald-600" />
-            </div>
-            <span className="text-xl sm:text-2xl font-bold text-emerald-950 dark:text-emerald-50">Namaz Journal</span>
-          </Link>
-        </div>
-        <h2 className="mt-6 text-center text-2xl sm:text-3xl font-extrabold text-emerald-950 dark:text-emerald-50">
-          Welcome Back
-        </h2>
-        <p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-300">
-          Or{' '}
-          <Link to="/register" className="font-medium text-emerald-600 hover:text-emerald-500 transition">
-            create a new account
-          </Link>
-        </p>
-      </div>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex items-center justify-center px-4 py-10">
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mt-8 sm:mx-auto sm:w-full sm:max-w-md z-10"
+        className="w-full max-w-md"
       >
-        <div className="glass py-8 px-4 sm:rounded-3xl sm:px-10 border border-white/40 shadow-2xl shadow-emerald-900/5">
+
+        {/* Logo */}
+
+        <div className="flex flex-col items-center mb-8">
+
+          <Link
+            to="/"
+            className="flex items-center gap-3"
+          >
+            <img
+              src={logo}
+              alt="Namaz Journal"
+              className="w-14 h-14 rounded-2xl"
+            />
+
+            <h1 className="text-2xl font-bold text-emerald-700">
+              My Namaz Journal
+            </h1>
+          </Link>
+
+          <p className="mt-2 text-slate-500">
+            Welcome Back
+          </p>
+
+        </div>
+
+        {/* Card */}
+
+        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8">
+
           {error && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl flex items-center gap-2 text-sm">
-              <XCircle className="h-5 w-5 shrink-0" />
+            <div className="mb-5 rounded-xl border border-red-200 bg-red-50 p-3 flex gap-2 text-red-600 text-sm">
+              <XCircle className="w-5 h-5 shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5"
+          >
+
+            {/* Username */}
+
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Username</label>
-              <div className="mt-1 relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-5 w-5 text-emerald-500" />
-                </div>
+
+              <label className="text-sm font-medium">
+                Username
+              </label>
+
+              <div className="relative mt-2">
+
+                <User className="absolute left-3 top-3.5 w-5 h-5 text-emerald-500" />
+
                 <input
                   type="text"
-                  required
-                  disabled={loading}
-                  className="appearance-none block w-full pl-10 px-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm dark:shadow-none placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition bg-white/50 focus:bg-white dark:bg-slate-800 disabled:opacity-50"
-                  placeholder="Enter your username"
                   value={formData.username}
-                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  disabled={isLoading}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      username: e.target.value,
+                    })
+                  }
+                  placeholder="Enter username"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none dark:bg-slate-700"
                 />
+
               </div>
+
             </div>
 
+            {/* Password */}
+
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Password</label>
-              <div className="mt-1 relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-emerald-500" />
-                </div>
+
+              <label className="text-sm font-medium">
+                Password
+              </label>
+
+              <div className="relative mt-2">
+
+                <Lock className="absolute left-3 top-3.5 w-5 h-5 text-emerald-500" />
+
                 <input
-                  type={showPassword ? "text" : "password"}
-                  required
-                  disabled={loading}
-                  className="appearance-none block w-full pl-10 pr-10 px-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm dark:shadow-none placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition bg-white/50 focus:bg-white dark:bg-slate-800 disabled:opacity-50"
-                  placeholder="Enter your password"
+                  type={
+                    showPassword ? 'text' : 'password'
+                  }
                   value={formData.password}
-                  onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                  disabled={isLoading}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      password: e.target.value,
+                    })
+                  }
+                  placeholder="Enter password"
+                  className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none dark:bg-slate-700"
                 />
+
                 <button
                   type="button"
-                  disabled={loading}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center disabled:opacity-50"
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() =>
+                    setShowPassword(!showPassword)
+                  }
+                  className="absolute right-3 top-3"
                 >
                   {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-slate-400 hover:text-emerald-500 transition" />
+                    <EyeOff className="w-5 h-5 text-slate-500" />
                   ) : (
-                    <Eye className="h-5 w-5 text-slate-400 hover:text-emerald-500 transition" />
+                    <Eye className="w-5 h-5 text-slate-500" />
                   )}
                 </button>
+
               </div>
+
             </div>
 
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center">
+            {/* Remember */}
+
+            <div className="flex justify-between items-center">
+
+              <label className="flex items-center gap-2 text-sm">
+
                 <input
-                  id="remember-me"
                   type="checkbox"
-                  disabled={loading}
-                  className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded cursor-pointer disabled:opacity-50"
                   checked={formData.rememberMe}
-                  onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      rememberMe: e.target.checked,
+                    })
+                  }
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-700 dark:text-slate-200 cursor-pointer">
-                  Remember me
-                </label>
-              </div>
 
-              <div className="text-sm">
-                <Link
-                  to="/forgot-password"
-                  className="font-medium text-emerald-600 hover:text-emerald-500 transition"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-            </div>
+                Remember me
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition transform hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 disabled:cursor-not-allowed"
+              </label>
+
+              <Link
+                to="/forgot-password"
+                className="text-sm text-emerald-600 hover:underline"
               >
-                {loading ? (
-                  <>
-                    <Loader2 className="animate-spin h-5 w-5" /> Signing In...
-                  </>
-                ) : (
-                  <>
-                    Sign In <ArrowRight className="h-4 w-4" />
-                  </>
-                )}
-              </button>
+                Forgot Password?
+              </Link>
+
             </div>
+
+            {/* Button */}
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-semibold flex justify-center items-center gap-2 transition"
+            >
+
+              {isLoading ? (
+                <>
+                  <Loader2 className="animate-spin w-5 h-5" />
+                  Signing In...
+                </>
+              ) : (
+                <>
+                  Sign In
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
+
+            </button>
+
           </form>
+
+          <p className="mt-6 text-center text-sm">
+
+            Don't have an account?{' '}
+
+            <Link
+              to="/register"
+              className="text-emerald-600 font-semibold hover:underline"
+            >
+              Create Account
+            </Link>
+
+          </p>
+
         </div>
+
       </motion.div>
+
     </div>
   );
 }
