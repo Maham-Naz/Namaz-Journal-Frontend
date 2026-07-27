@@ -163,7 +163,7 @@ export default function Register() {
                 <User className="absolute left-3 top-3.5 w-5 h-5 text-emerald-500"/>
 
                 <input
-                  className="w-full pl-10 py-3 rounded-xl border dark:bg-slate-700"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 outline-none dark:bg-slate-700"
                   value={formData.fullName}
                   onChange={(e)=>
                     setFormData({
@@ -171,6 +171,7 @@ export default function Register() {
                       fullName:e.target.value
                     })
                   }
+                  placeholder="Enter Full Name"
                 />
               </div>
             </div>
@@ -190,6 +191,7 @@ export default function Register() {
                       username:e.target.value
                     })
                   }
+                  placeholder="Enter Username"
                 />
               </div>
             </div>
@@ -210,6 +212,7 @@ export default function Register() {
                       email:e.target.value
                     })
                   }
+                  placeholder="Enter Email"
                 />
               </div>
             </div>
@@ -232,6 +235,7 @@ export default function Register() {
                       password:e.target.value
                     })
                   }
+                  placeholder="Enter Password"
                 />
 
                 <button
@@ -293,6 +297,7 @@ export default function Register() {
                       confirmPassword:e.target.value
                     })
                   }
+                  placeholder="Confirm Password"
                 />
 
                 <div className="absolute right-3 top-3">
