@@ -34,7 +34,7 @@ export default function TopNavigation({
             <img
               src={logo}
               alt="Namaz Journal"
-              className="w-10 h-10 rounded-xl"
+              className="w-9 h-9 object-contain"
             />
 
             <div className="hidden sm:block">
