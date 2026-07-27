@@ -43,7 +43,7 @@ export default function TopNavigation({
             />
 
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold tracking-tight text-emerald-700 dark:text-emerald-400">
+              <h1 className="text-xl font-bold tracking-tight text-emerald-700 dark:text-emerald-700">
                 My Namaz Journal
               </h1>
             </div>
